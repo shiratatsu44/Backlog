@@ -41,7 +41,21 @@ class Project(object):
         :param textFormattingRule:
         :return:
         """
-        raise NotImplementedError
+        _uri = "projects/"
+        _method = "POST"
+        params = dict(
+            name=name,
+            key=key,
+            chatEnabled=chatEnabled,
+            projectLeaderCanEditProjectLeader=projectLeaderCanEditProjectLeader,
+            subtaskingEnabled=subtaskingEnabled,
+            textFormattingRule=textFormattingRule
+        )
+        headers = "Content-Type:application/x-www-form-urlencoded"
+
+        resp = self.api.invoke_method(_method, _uri, request_param=params, headers=headers)
+
+        return resp.json()
 
     def get(self, projectIdOrKey):
         """
